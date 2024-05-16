@@ -1,0 +1,55 @@
+@startuml
+class Usuario {
+    -id: int
+    -nombre: String
+    -direccion: String
+    -correo: String
+    +getNombre(): String
+    +setNombre(nombre: String): void
+    +getDireccion(): String
+    +setDireccion(direccion: String): void
+    +getCorreo(): String
+    +setCorreo(correo: String): void
+    +validarDireccion(direccion: String): boolean
+}
+
+class Libro {
+    -ISBN: String
+    -titulo: String
+    -autor: String
+    -anioPublicacion: int
+    -categoria: String
+    -disponible: boolean
+    +getTitulo(): String
+    +setTitulo(titulo: String): void
+    +getAutor(): String
+    +setAutor(autor: String): void
+    +getAnioPublicacion(): int
+    +setAnioPublicacion(anio: int): void
+    +getCategoria(): String
+    +setCategoria(categoria: String): void
+    +isDisponible(): boolean
+    +setDisponible(disponible: boolean): void
+}
+
+class Biblioteca {
+    -usuarios: List<Usuario>
+    -libros: List<Libro>
+    +registrarUsuario(nombre: String, direccion: String, correo: String): Usuario
+    +buscarLibroPorTitulo(titulo: String): List<Libro>
+    +buscarLibroPorAutor(autor: String): List<Libro>
+    +buscarLibroPorCategoria(categoria: String): List<Libro>
+    +verificarDisponibilidad(libro: Libro): boolean
+    +realizarReserva(usuario: Usuario, libro: Libro): void
+    +solicitarPrestamo(usuario: Usuario, libro: Libro): void
+    +renovarPrestamo(usuario: Usuario, libro: Libro): void
+    +generarMulta(usuario: Usuario, libro: Libro): void
+    +agregarLibro(ISBN: String, titulo: String, autor: String, anio: int, categoria: String): Libro
+    +eliminarLibro(libro: Libro): void
+    +generarInformeInventario(): void
+    +generarInformePrestamos(): void
+}
+
+Usuario -- Biblioteca : es miembro de
+Libro -- Biblioteca : es parte de
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+actor Usuario
+
+participant "Biblioteca" as Bib
+participant "ValidadorDirecciones" as Validador
+participant "GeneradorId" as GeneradorId
+participant "Usuario" as User
+
+== Registro de Usuario ==
+
+User -> Bib: Iniciar proceso de registro
+activate Bib
+Bib -> Validador: Validar dirección
+activate Validador
+Validador --> Bib: Dirección válida
+deactivate Validador
+Bib -> GeneradorId: Generar número de identificación
+activate GeneradorId
+GeneradorId --> Bib: Número generado (12345)
+deactivate GeneradorId
+Bib --> User: Registro exitoso, ID: 12345
+deactivate Bib
+
+== Búsqueda de Libros ==
+
+User -> Bib: Realizar búsqueda de libros por título
+activate Bib
+Bib --> User: Lista de libros encontrados
+deactivate Bib
+
+== Préstamo de Libros ==
+
+User -> Bib: Solicitar préstamo de libro
+activate Bib
+Bib -> Bib: Verificar disponibilidad del libro
+Bib --> User: Libro disponible
+User -> Bib: Confirmar préstamo
+activate Bib
+Bib --> User: Préstamo confirmado
+deactivate Bib
+deactivate User
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+actor Usuario as U
+actor Bibliotecario as B
+
+rectangle "Sistema de Biblioteca" {
+    usecase "Registrar Usuario" as RegUser
+    usecase "Buscar Libros" as SearchBooks
+    usecase "Realizar Reserva" as MakeReservation
+    usecase "Solicitar Préstamo" as RequestLoan
+    usecase "Renovar Préstamo" as RenewLoan
+    usecase "Generar Multas" as GenerateFines
+    usecase "Gestionar Inventario" as ManageInventory
+}
+
+U --> RegUser: Registrar Usuario
+U --> SearchBooks: Buscar Libros
+U --> MakeReservation: Realizar Reserva
+U --> RequestLoan: Solicitar Préstamo
+U --> RenewLoan: Renovar Préstamo
+U --> GenerateFines: Generar Multas
+B --> ManageInventory: Gestionar Inventario
+
+@enduml
